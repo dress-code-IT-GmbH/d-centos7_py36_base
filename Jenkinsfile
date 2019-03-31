@@ -1,9 +1,19 @@
 pipeline {
     agent any
+    parameters {
+        string(defaultValue: 'True', description: '"True": "Set --nocache for docker build; otherwise leave empty', name: 'nocache')
+        string(defaultValue: '', description: '"True": push docker image after build; otherwise leave empty', name: 'pushimage')
+    }
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t intra/centos7_py36_base .'
+                sh '''
+                    if [[ "$nocache" ]]; then
+                         nocacheopt='--no-cache'
+                         echo 'build with option nocache'
+                    fi
+                    docker build $nocacheopt -t intra/centos7_py36_base .
+                '''
             }
         }
        stage('Push ') {

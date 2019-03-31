@@ -1,8 +1,7 @@
 FROM intra/centos7_base
 LABEL maintainer="Rainer Hörbe <r2h2@hoerbe.at>"
 
-RUN yum -y update \
- && yum -y install epel-release \
+RUN yum -y install epel-release \
  && yum -y install curl git ip lsof net-tools openssl tar unzip which \
  && yum -y install https://centos7.iuscommunity.org/ius-release.rpm \
  && yum -y install python36u python36u-pip \
