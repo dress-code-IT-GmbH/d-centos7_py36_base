@@ -1,5 +1,7 @@
 FROM intra/centos7_base
-LABEL maintainer="Rainer Hörbe <r2h2@hoerbe.at>"
+LABEL maintainer="Dress code IT Gmbh <office@dress-code.biz>"
+
+RUN yum update
 
 RUN yum -y install epel-release \
  && yum -y install curl git ip lsof net-tools openssl tar unzip which \
